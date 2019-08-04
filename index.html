@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="css/boilerplate.css"/>
+<link  id="hostStyle" rel="stylesheet" href="css/styles.css"/>
+<title></title>
+</head>
+
+<body class="hostElt">
+
+        
+        <h1 class="hostFont">Illustrator batch extends</h1>
+        <button id="reload" class="hostButton">reload actions</button>
+        <button id="allClose" class="hostButton">ドキュメントを保存しないで全て閉じる</button>
+        <form name="actions"><ul>
+            <li>
+                <select name="set" id="set">action set</select>
+            </li>
+            <li>
+                <select name="action" id="action">action list</select>
+            </li>
+        </ul>
+        </form>
+        <form name="options">
+            <ul>
+                <li><input type="checkbox" class="options" id="save">保存する</li>
+                <li><input type="checkbox" class="options" id="allSelect">処理前に全て選択する</li>
+                <li><input type="checkbox" class="options" id="allOpened">開いた画像全てに処理</li>
+            </ul>
+        </form>
+        <button id="batch" class="hostButton">バッチ処理</button>
+    <!-- These are debugging shortcuts.  Class debuglink items only appear in debug mode  -->
+    <span class="debuglink" id="reload">Reload</span>
+    <span class="debuglink" id="debug">Debug</span>
+    <span class="debuglink" id="sources">Sources</span>
+    
+    <script src="js/libs/CSInterface.js"></script>
+
+    <script src="js/themeManager.js"></script>
+    <script src="js/main.js"></script>
+
+        
+</body>
+</html>
