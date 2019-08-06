@@ -26,10 +26,26 @@
             <ul>
                 <li><input type="checkbox" class="options" id="save">保存する</li>
                 <li><input type="checkbox" class="options" id="allSelect">処理前に全て選択する</li>
-                <li><input type="checkbox" class="options" id="allOpened">開いた画像全てに処理</li>
+                <!--<li><input type="checkbox" class="options" id="allOpened">開いた画像全てに処理</li>-->
+            </ul>
+            <ul>
+                <li><input type="radio" class="method" id="action" name="method">action</li>
+                <li><input type="radio" class="method" id="script" name="method">script</li>
             </ul>
         </form>
         <button id="batch" class="hostButton">バッチ処理</button>
+        <form name ="script">
+            <select name="scriptList" id="scriptList" size="1">
+                <!--
+                <option value="サンプル1">選択肢のサンプル1</option>
+                <option value="サンプル2">選択肢のサンプル2</option>
+                <option value="サンプル3">選択肢のサンプル3</option>
+                <option value="サンプル4">選択肢のサンプル4</option>
+                <option value="サンプル5">選択肢のサンプル5</option>
+                -->
+            </select>
+        </form>  
+        <button id="loadScripts" class="hostButton">スクリプトを読み込む</button>
     <!-- These are debugging shortcuts.  Class debuglink items only appear in debug mode  -->
     <span class="debuglink" id="reload">Reload</span>
     <span class="debuglink" id="debug">Debug</span>

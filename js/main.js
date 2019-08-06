@@ -17,6 +17,41 @@ window.onload = () =>{
     const batch = document.getElementById("batch");
     const allClose = document.getElementById("allClose");
     const reload = document.getElementById("reload");
+    const scriptList = document.getElementById("scriptList");
+    const loadScripts = document.getElementById("loadScripts");
+    
+    class SortScripts{
+        constructor(btn){
+            this.btn = btn;
+            this.btn.addEventListener("click",this);
+        }
+        
+        async handleEvent(){
+            const json = await getScript();
+            removeChildren(scriptList);
+            scriptList.size = json.length;
+            json.forEach(v=>{
+                const option = document.createElement("option");
+                option.value = v;
+                option.textContent = path.basename(v,path.extname(v));//ファイルネーム（拡張子抜き）
+                scriptList.appendChild(option);
+            });
+        }
+        
+    }
+    
+    const sc = new SortScripts(loadScripts);
+    sc.handleEvent();
+    
+    function getScript(){
+        return new Promise(resolve=>{
+            csInterface.evalScript(`$.evalFile("${extensionRoot}getScripts.jsx")`,(o)=>{
+                const json = JSON.parse(o);
+                console.log(json);
+                resolve(json);
+            });
+        })
+    }
     
     allClose.addEventListener("click",()=>{
         csInterface.evalScript(`$.evalFile("${extensionRoot}allClose.jsx")`);
@@ -36,6 +71,7 @@ window.onload = () =>{
             options.forEach(v=>{
                 obj[v.id] = v.checked;
             });
+            obj.allOpened = true;//開いた画像全てに処理一択
             console.log(obj);
             //writeJson(obj);//デバッグ用json書き出し
             csInterface.evalScript(`batchProcess(${JSON.stringify(obj)})`);
