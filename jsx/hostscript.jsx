@@ -35,7 +35,12 @@ function batchProcess(obj){
             app.executeMenuCommand("selectallinartboard");
         }
         try {  
-            app.doScript(obj.action,obj.set);  
+            if(obj.Byaction){
+                app.doScript(obj.action,obj.set);  
+            }
+            if(obj.Byscript){
+                $.evalFile(obj.script);
+            }
         }  
         catch (e) {  
             return false;
@@ -57,5 +62,12 @@ function batchProcess(obj){
             activeDocument.saveAs(saveFile);
             return false;
         }
+    }
+
+    function PDF(){
+        var savePath = new File(activeDocument.path);
+        var option = new PDFSaveOptions();
+        option.compatibility = PDFCompatibility.ACROBAT7;
+        activeDocument.saveAs(savePath,option);
     }
 }

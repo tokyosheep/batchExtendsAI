@@ -23,7 +23,6 @@ by the settings of the CC application
 /*background color and font*/
 .hostElt{}
 
-
 .hostButton{
     border:1px solid;
     border-radius:2px;
@@ -32,4 +31,8 @@ by the settings of the CC application
     font-family:inherit;
     color:inherit;
     font-size:inherit;
+}
+
+.HideScript{
+    display: none;
 }

@@ -12,6 +12,7 @@ window.onload = () =>{
     const fs = require("fs");
     const path = require("path");
     
+    
     const set = document.getElementById("set");
     const action = document.getElementById("action");
     const batch = document.getElementById("batch");
@@ -19,6 +20,42 @@ window.onload = () =>{
     const reload = document.getElementById("reload");
     const scriptList = document.getElementById("scriptList");
     const loadScripts = document.getElementById("loadScripts");
+    const save = document.getElementById("save");
+    const ScriptMode = document.getElementById("ScriptMode");
+    
+    ScriptMode.addEventListener("click",()=>{
+        const HideScript = Array.from(document.getElementsByClassName("HideScript"));
+        const flag = ScriptMode.dataset.flag;
+        console.log(flag);
+        let visible;
+        if(flag === "none"){
+            visible = "block";
+        }else{
+            visible = "none";
+        }
+        HideScript.forEach(v=>{
+            v.style.display = visible;
+        });
+        ScriptMode.dataset.flag = visible;
+    });
+    
+    class DisabedFlag{
+        constructor(btn,elm){
+            this.btn = btn;
+            this.elm = Array.from(elm);
+            this.btn.addEventListener("click",this);
+        }
+        
+        handleEvent(){
+            console.log(this.elm);
+            this.elm.forEach(v=>{
+                console.log(v.disabled);
+                v.disabled = !this.btn.checked;
+            });
+        }
+    }
+    
+    const saveFormats = new DisabedFlag(save,document.getElementsByClassName("saveFormats"));
     
     class SortScripts{
         constructor(btn){
@@ -65,12 +102,16 @@ window.onload = () =>{
         async handleEvent(){
             const obj = {
                 set:set[set.selectedIndex].value,
-                action:action[action.selectedIndex].value
+                action:action[action.selectedIndex].value,
+                script:scriptList[scriptList.selectedIndex].value
             }
             const options = Array.from(document.getElementsByClassName("options"));
             options.forEach(v=>{
                 obj[v.id] = v.checked;
             });
+            Array.from(document.getElementsByClassName("method")).forEach(v=>{
+                obj[v.id] = v.checked;
+            })
             obj.allOpened = true;//開いた画像全てに処理一択
             console.log(obj);
             //writeJson(obj);//デバッグ用json書き出し

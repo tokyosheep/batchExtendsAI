@@ -24,17 +24,24 @@
         </form>
         <form name="options">
             <ul>
-                <li><input type="checkbox" class="options" id="save">保存する</li>
+                <li><input type="checkbox" class="options" id="save">実行後に保存する</li>
+                <ul>
+                    <li><input type="checkbox" class="saveType saveFormats" disabled id="AiSave">Ai形式で保存</li>
+                    <li><input type="checkbox" class="saveType saveFormats" disabled id="PDFSave">PDF形式で保存</li>
+                </ul>
                 <li><input type="checkbox" class="options" id="allSelect">処理前に全て選択する</li>
+                <li><input type="checkbox" class="options" id="fitArtBoard">アートボードを合わせる</li>
+                <li><input type="checkbox" class="options" id="allUnlocked">ロックを全て解除する</li>
+                <li><input type="checkbox" class="options" id="allVisibleLayer">レイヤーを全て見える状態に</li>
                 <!--<li><input type="checkbox" class="options" id="allOpened">開いた画像全てに処理</li>-->
             </ul>
             <ul>
-                <li><input type="radio" class="method" id="action" name="method">action</li>
-                <li><input type="radio" class="method" id="script" name="method">script</li>
+                <li><input type="radio" class="method" id="Byaction" name="method" checked ="true">action</li>
+                <li class="HideScript"><input type="radio" class="method" id="Byscript" name="method">script</li>
             </ul>
         </form>
         <button id="batch" class="hostButton">バッチ処理</button>
-        <form name ="script">
+        <form name ="script" class="HideScript">
             <select name="scriptList" id="scriptList" size="1">
                 <!--
                 <option value="サンプル1">選択肢のサンプル1</option>
@@ -45,7 +52,9 @@
                 -->
             </select>
         </form>  
-        <button id="loadScripts" class="hostButton">スクリプトを読み込む</button>
+        
+        <button id="loadScripts" class="hostButton HideScript">スクリプトを読み込む</button>
+        <button id="ScriptMode" class="hostButton" data-flag="none">スクリプト　表示</button>
     <!-- These are debugging shortcuts.  Class debuglink items only appear in debug mode  -->
     <span class="debuglink" id="reload">Reload</span>
     <span class="debuglink" id="debug">Debug</span>

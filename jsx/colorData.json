@@ -1,6 +1,10 @@
 {
     "set": "初期設定アクション",
     "action": "不透明度60（選択範囲）",
+    "script": "/Applications/Adobe Illustrator CC 2019/Presets.localized/ja_JP/スクリプト/ドキュメントを PDF として保存.jsx",
     "save": false,
-    "allSelect": false
+    "allSelect": false,
+    "Byaction": true,
+    "Byscript": false,
+    "allOpened": true
 }
