@@ -31,6 +31,14 @@ function batchProcess(obj){
     }
 
     function isActionExist(obj){
+        if(obj.allUnlocked){
+             unlockItems();
+        }
+        
+        if(obj.allVisibleLayer){
+            visibleLayers(activeDocument.layers);
+        }
+        
         if(obj.allSelect){
             app.executeMenuCommand("selectallinartboard");
         }
@@ -46,8 +54,11 @@ function batchProcess(obj){
             return false;
         }  
 
-        if(obj.save){
+        if(obj.AiSave&&obj.save){
             saveAIdata();
+        }
+        if(obj.PDFSave&&obj.save){
+            PDF();
         }
         return true;
     }
@@ -69,5 +80,36 @@ function batchProcess(obj){
         var option = new PDFSaveOptions();
         option.compatibility = PDFCompatibility.ACROBAT7;
         activeDocument.saveAs(savePath,option);
+    }
+    
+    function unlockItems(){
+        layerUnlock(activeDocument.layers);
+        var p = activeDocument.pageItems;
+        for(var i=0;i < p.length;i++){
+            try{
+            }catch(e){
+                p[i].locked = false;
+            }
+        }
+        function layerUnlock(lay){
+            for(var i=0;i<lay.length;i++){
+                lay[i].locked = false;
+                $.writeln(lay[i].layers.length);
+                if(lay[i].layers.length > 0){
+                    layerUnlock(lay[i].layers);
+                }
+            }
+        }
+    }
+    
+    function visibleLayers(lay){
+        for(var i=0;i<lay.length;i++){
+            lay[i].visible = true;
+            
+            if(lay[i].layers.length > 0){
+                visibleLayers(lay[i].layers);
+            }
+            
+        }
     }
 }

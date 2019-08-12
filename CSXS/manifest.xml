@@ -70,8 +70,8 @@
 					<Menu>batchExtendsAI</Menu>
 					<Geometry>
 						<Size>
-							<Height>300</Height>
-							<Width>300</Width>
+							<Height>400</Height>
+							<Width>400</Width>
 						</Size>
                     <!--<MinSize>
                             <Height>550</Height>

@@ -1,3 +1,6 @@
+import "@babel/polyfill";
+import "../css/styles.scss";
+
 window.onload = () =>{
     "use strict";
     const csInterface = new CSInterface();
@@ -100,22 +103,37 @@ window.onload = () =>{
         }
         
         async handleEvent(){
-            const obj = {
-                set:set[set.selectedIndex].value,
-                action:action[action.selectedIndex].value,
-                script:scriptList[scriptList.selectedIndex].value
-            }
+            const obj = {};
+            Array.from(document.getElementsByClassName("method")).forEach(v=>{
+                obj[v.id] = v.checked;
+            });
+            
+            
+            const scriptValue = (()=>{
+                let value;
+                try{
+                    value = scriptList[scriptList.selectedIndex].value;
+                }catch(e){
+                    value = null;
+                }finally{
+                    return value;
+                }
+            })();
+            obj.set = set[set.selectedIndex].value;
+            obj.action = action[action.selectedIndex].value;
+            obj.script = scriptValue;
             const options = Array.from(document.getElementsByClassName("options"));
             options.forEach(v=>{
                 obj[v.id] = v.checked;
             });
-            Array.from(document.getElementsByClassName("method")).forEach(v=>{
+            Array.from(document.getElementsByClassName("saveFormats")).forEach(v=>{
                 obj[v.id] = v.checked;
-            })
+            });
             obj.allOpened = true;//開いた画像全てに処理一択
             console.log(obj);
             //writeJson(obj);//デバッグ用json書き出し
             csInterface.evalScript(`batchProcess(${JSON.stringify(obj)})`);
+            
         }
     }
     
@@ -150,7 +168,7 @@ window.onload = () =>{
                     option.value = v.name;
                     option.textContent = v.name;
                     set.appendChild(option);
-            })
+            });
         }
         
         writeActionList(index){
@@ -176,7 +194,7 @@ window.onload = () =>{
         }
     }
     
-    function fromHex(h) {
+    function fromHex(h){
         var s = ''
         for (var i = 0; i < h.length; i+=2) {
             s += String.fromCharCode(parseInt(h.substr(i, 2), 16))

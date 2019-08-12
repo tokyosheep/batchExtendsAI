@@ -1,0 +1,133 @@
+/*Your styles*/
+
+
+
+
+
+/*
+Those classes will be edited at runtime with values specified
+by the settings of the CC application
+*/
+.hostFontColor{}
+.hostFontFamily{}
+.hostFontSize{}
+
+/*font family, color and size*/
+.hostFont{}
+/*background color*/
+.hostBgd{}
+/*lighter background color*/
+.hostBgdLight{}
+/*darker background color*/
+.hostBgdDark{}
+/*background color and font*/
+.hostElt{}
+
+@mixin fontsStyle($fSize){
+    color: #fff;
+    font-family: Garamond;
+    display: inline-block;
+    font-size: $fSize;
+}
+
+.hostButton{
+    border:1px solid white;
+    border-radius:3px;
+    height:20px;
+    background: rgba(0,0,0,0.5);
+    @include fontsStyle(10px);
+    display: block;
+    margin-top: 10px;
+    cursor: pointer;
+    transition-duration: 0.2s;    
+    &:active{
+      transform: scale(0.8);     
+    }
+}
+
+.HideScript{
+    display: none;
+}
+
+h1{
+    margin: 0px 10px;
+    @include fontsStyle(20px);
+    
+}
+
+h2{
+    margin: 5px 10px;
+    @include fontsStyle(15px);
+}
+
+li{
+    list-style: none;
+}
+
+#optionsList{
+    li{
+        font-family: 'Open Sans', Arial, sans-serif;
+        #optionsSave{
+            
+        }
+    }
+}
+
+$checkedColor: #b2bdef;
+$checkedColorDis: #101b4a;
+.boxesLabel{
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border: solid 1px #99a1f7;
+    position: relative;
+    
+    &::before{
+        content: "";
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 15px;
+        height: 15px;
+        //border: 1px solid #999;
+        border-radius: 4px;
+    }
+}
+
+input[type=checkbox]{
+    display: none;
+    &:checked + .boxesLabel{
+        background: white;
+    }
+    
+    &:checked + .boxesLabel::after{
+        content: "";
+        display: block;
+        position: absolute;
+        top: -8px;
+        left: 5px;
+        width: 7px;
+        height: 14px;
+        transform: rotate(40deg);
+        border-bottom: 3px solid $checkedColor;
+        border-right: 3px solid $checkedColor;
+    }
+    
+    &:disabled + .boxesLabel{
+        background: #000;
+        border-color: #444;
+        &::after{
+            border-bottom: 3px solid $checkedColorDis;
+            border-right: 3px solid $checkedColorDis;
+        }
+    }
+}
+
+select{
+    appearance:button;
+    background: rgba(255,255,255,0.7);
+    margin-bottom: 10px;
+    padding: 2px 5px;
+    color: black;
+}

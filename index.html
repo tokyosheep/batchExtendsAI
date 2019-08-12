@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<link rel="stylesheet" href="css/boilerplate.css"/>
+<!--<link rel="stylesheet" href="css/boilerplate.css"/>-->
 <link  id="hostStyle" rel="stylesheet" href="css/styles.css"/>
 <title></title>
 </head>
@@ -10,9 +10,10 @@
 <body class="hostElt">
 
         
-        <h1 class="hostFont">Illustrator batch extends</h1>
+        <h1>Illustrator batch extends</h1>
         <button id="reload" class="hostButton">reload actions</button>
         <button id="allClose" class="hostButton">ドキュメントを保存しないで全て閉じる</button>
+        <h2>action</h2>
         <form name="actions"><ul>
             <li>
                 <select name="set" id="set">action set</select>
@@ -22,17 +23,40 @@
             </li>
         </ul>
         </form>
+        <h2>options</h2>
         <form name="options">
-            <ul>
-                <li><input type="checkbox" class="options" id="save">実行後に保存する</li>
-                <ul>
-                    <li><input type="checkbox" class="saveType saveFormats" disabled id="AiSave">Ai形式で保存</li>
-                    <li><input type="checkbox" class="saveType saveFormats" disabled id="PDFSave">PDF形式で保存</li>
+            <ul id="optionsList">
+                <li><input type="checkbox" class="options" id="save">
+                    <label class="boxesLabel" for="save"></label>
+                    実行後に保存する
+                </li>
+                <ul id="optionsSave">
+                    <li>
+                        <input type="checkbox" class="saveType saveFormats" disabled id="AiSave">
+                        <label class="boxesLabel" for="AiSave"></label>    
+                        Ai形式で保存
+                    </li>
+                    <li>
+                        <input type="checkbox" class="saveType saveFormats" disabled id="PDFSave">
+                        <label class="boxesLabel" for="PDFSave"></label>      
+                        PDF形式で保存
+                    </li>
                 </ul>
-                <li><input type="checkbox" class="options" id="allSelect">処理前に全て選択する</li>
-                <li><input type="checkbox" class="options" id="fitArtBoard">アートボードを合わせる</li>
-                <li><input type="checkbox" class="options" id="allUnlocked">ロックを全て解除する</li>
-                <li><input type="checkbox" class="options" id="allVisibleLayer">レイヤーを全て見える状態に</li>
+                <li>
+                    <input type="checkbox" class="options" id="allSelect">
+                    <label class="boxesLabel" for="allSelect"></label>  
+                    処理前に全て選択する    
+                </li>
+                <li>
+                    <input type="checkbox" class="options" id="allUnlocked">
+                    <label class="boxesLabel" for="allUnlocked"></label>  
+                    ロックを全て解除する
+                </li>
+                <li>
+                    <input type="checkbox" class="options" id="allVisibleLayer">
+                    <label class="boxesLabel" for="allVisibleLayer"></label>      
+                    レイヤーを全て見える状態に
+                </li>
                 <!--<li><input type="checkbox" class="options" id="allOpened">開いた画像全てに処理</li>-->
             </ul>
             <ul>
@@ -41,7 +65,8 @@
             </ul>
         </form>
         <button id="batch" class="hostButton">バッチ処理</button>
-        <form name ="script" class="HideScript">
+        <h2 class="HideScript">scripts</h2>
+        <form name="script" class="HideScript">
             <select name="scriptList" id="scriptList" size="1">
                 <!--
                 <option value="サンプル1">選択肢のサンプル1</option>
@@ -63,7 +88,7 @@
     <script src="js/libs/CSInterface.js"></script>
 
     <script src="js/themeManager.js"></script>
-    <script src="js/main.js"></script>
+    <script src="js/dist.js"></script>
 
         
 </body>
