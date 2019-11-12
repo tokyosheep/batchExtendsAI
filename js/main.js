@@ -25,6 +25,7 @@ window.onload = () =>{
     const loadScripts = document.getElementById("loadScripts");
     const save = document.getElementById("save");
     const ScriptMode = document.getElementById("ScriptMode");
+    const undo = document.getElementById("undo");
     
     ScriptMode.addEventListener("click",()=>{
         const HideScript = Array.from(document.getElementsByClassName("HideScript"));
@@ -95,6 +96,10 @@ window.onload = () =>{
     
     allClose.addEventListener("click",()=>{
         csInterface.evalScript(`$.evalFile("${extensionRoot}allClose.jsx")`);
+    });
+    
+    undo.addEventListener("click",()=>{
+        csInterface.evalScript(`$.evalFile("${extensionRoot}allUndo.jsx")`);
     });
     
     class BatchProcess{
