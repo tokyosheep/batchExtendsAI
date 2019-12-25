@@ -8,7 +8,7 @@ obj = {
 batchProcess(obj);
 */
 function batchProcess(obj){
-    $.writeln(obj.allOpened);
+    //$.writeln(obj.allOpened);
     if(obj.allOpened){
     var docs = getAlldocs();
     for(var i=0;i<docs.length;i++){ 
@@ -94,7 +94,7 @@ function batchProcess(obj){
         function layerUnlock(lay){
             for(var i=0;i<lay.length;i++){
                 lay[i].locked = false;
-                $.writeln(lay[i].layers.length);
+                //$.writeln(lay[i].layers.length);
                 if(lay[i].layers.length > 0){
                     layerUnlock(lay[i].layers);
                 }
